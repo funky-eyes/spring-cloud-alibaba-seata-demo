@@ -13,8 +13,7 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 
 @Configuration
-@MapperScan("icu.funkye.mapper*") // 这个注解，作用相当于下面的@Bean
-// MapperScannerConfigurer，2者配置1份即可
+@MapperScan("icu.funkye.mapper*")
 public class MybatisPlusConfig {
 
     /**
@@ -41,8 +40,4 @@ public class MybatisPlusConfig {
         return new OptimisticLockerInterceptor();
     }
 
- /*   @Bean
-    public MybatisInterceptor interceptor() {
-        return new MybatisInterceptor();
-    }*/
 }
