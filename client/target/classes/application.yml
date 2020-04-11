@@ -1,0 +1,22 @@
+seata:
+   enabled: true
+   application-id: client
+   tx-service-group: my_test_tx_group
+   config:
+      type: nacos
+      file:
+         name: file.conf
+      nacos:
+         namespace:
+         serverAddr: localhost
+         group: SEATA_GROUP
+         userName: ""
+         password: ""
+   registry:
+      type: nacos
+      nacos:
+         application: seata-server
+         server-addr: localhost
+         namespace:
+         userName: ""
+         password: ""
