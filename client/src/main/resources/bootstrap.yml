@@ -18,6 +18,3 @@ ribbon:
    ConnectTimeout: 100000
    ReadTimeout: 1000000
    OkToRetryOnAllOperations: false
-feign:
-   hystrix:
-      enabled: true
