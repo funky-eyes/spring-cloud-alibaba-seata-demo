@@ -1,0 +1,13 @@
+spring:
+   application:
+      name: order-service
+   main:
+      allow-bean-definition-overriding: true
+   cloud:
+      nacos:
+         discovery:
+            server-addr: 192.168.14.67:8848
+         config:
+            server-addr: 192.168.14.67:8848
+server:
+   port: 8084

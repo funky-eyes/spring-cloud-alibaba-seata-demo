@@ -21,6 +21,9 @@
     <modules>
         <module>client</module>
         <module>service</module>
+        <module>product-service</module>
+        <module>order-service</module>
+        <module>account-service</module>
     </modules>
     <dependencyManagement>
         <dependencies>
