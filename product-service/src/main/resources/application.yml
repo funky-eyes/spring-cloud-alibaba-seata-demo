@@ -1,10 +1,10 @@
 spring:
    datasource:
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.14.67:3306/test_storage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      url: jdbc:mysql://127.0.0.1:3306/test_storage?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: 17xs2015
+      password: 123456
       max-wait: 60000
       max-active: 100
       min-idle: 10
@@ -32,7 +32,7 @@ seata:
          name: file.conf
       nacos:
          namespace:
-         serverAddr: 192.168.14.67:8848
+         serverAddr: 127.0.0.1:8848
          group: SEATA_GROUP
          userName: ""
          password: ""
@@ -40,7 +40,7 @@ seata:
       type: nacos
       nacos:
          application: seata-server
-         server-addr: 192.168.14.67:8848
+         server-addr: 127.0.0.1:8848
          namespace:
          userName: ""
          password: ""
