@@ -18,8 +18,6 @@
 
 3.事务分组配置出错导致无法找到tc
 
-![image-20200430222042837](C:\Users\陈健斌\AppData\Roaming\Typora\typora-user-images\image-20200430222042837.png)
-
 4.Global lock acquire failed
 
 5.Could not found global transaction xid
