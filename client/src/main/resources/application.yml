@@ -4,8 +4,6 @@ seata:
    tx-service-group: my_test_tx_group
    config:
       type: nacos
-      file:
-         name: file.conf
       nacos:
          namespace:
          serverAddr: 127.0.0.1:8848
