@@ -54,7 +54,7 @@ public class TestController {
     @GlobalTransactional
     public Object seataCommit() {
         testService.commit();
-        int i=1/0;
+//        int i=1/0;
         return true;
     }
 
