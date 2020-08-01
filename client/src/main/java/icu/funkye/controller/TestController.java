@@ -22,6 +22,7 @@ import io.seata.tm.api.GlobalTransactionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,7 +58,7 @@ public class TestController {
 
     /**
      * 全局异常捕获处理方案2
-     * 
+     *
      * @return
      */
     @GetMapping(value = "seataException")
@@ -98,7 +99,7 @@ public class TestController {
 
     /**
      * 异步进行缓存方案
-     * 
+     *
      * @return
      */
     @GetMapping(value = "seataCache")
@@ -111,7 +112,7 @@ public class TestController {
 
     /**
      * 通过缓存值,从缓存得到事务执行结果
-     * 
+     *
      * @param uuid
      * @return
      */
@@ -122,7 +123,7 @@ public class TestController {
 
     /**
      * 秒杀下单分布式事务测试
-     * 
+     *
      * @return
      * @throws TransactionException
      */
@@ -160,7 +161,7 @@ public class TestController {
 
     /**
      * 多数据源事务测试
-     * 
+     *
      * @return
      */
     @RequestMapping("testMultipleService")

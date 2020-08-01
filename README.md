@@ -1,6 +1,6 @@
 # Seata 1.2 进阶入门
 
-本篇作者:陈健斌(funkye),github:https://github.com/a364176773 gitee:https://gitee.com/xrzi2016/spring-cloud-seata-demo  
+本篇作者:陈健斌(funkye),github:https://github.com/a364176773 gitee:https://gitee.com/itCjb
 
 初级入门地址:https://mp.weixin.qq.com/s/BOntA2mcdF-e0t2e4CBjPQ
 

@@ -23,7 +23,5 @@ ribbon:
    ReadTimeout: 1000000
    OkToRetryOnAllOperations: false
 feign:
-   hystrix:
+   sentinel:
       enabled: true
-   httpclient:
-      connection-timeout: 60000

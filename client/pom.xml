@@ -11,6 +11,10 @@
 
     <artifactId>client</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
         <!--feign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
