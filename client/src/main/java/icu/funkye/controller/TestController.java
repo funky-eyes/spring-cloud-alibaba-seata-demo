@@ -1,12 +1,17 @@
 package icu.funkye.controller;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import icu.funkye.entity.Account;
 import icu.funkye.entity.Orders;
 import icu.funkye.entity.Product;
+import icu.funkye.service.DemoService;
 import icu.funkye.service.IAccountService;
+import icu.funkye.service.IMultipleService;
 import icu.funkye.service.IOrderService;
 import icu.funkye.service.IProductService;
 import icu.funkye.service.ITestService;
@@ -42,24 +47,82 @@ public class TestController {
     private IProductService productService;
     @Autowired
     private ITestService testService;
-
+    @Autowired
+    private IMultipleService multipleService;
+    @Autowired
+    private DemoService demoService;
     private Lock lock = new ReentrantLock();
+
+    private ExecutorService executorService = Executors.newCachedThreadPool();
+
+    /**
+     * 全局异常捕获处理方案2
+     * 
+     * @return
+     */
+    @GetMapping(value = "seataException")
+    public Object seataException() {
+        demoService.rollback();
+        return true;
+    }
+
+    /**
+     * 全局异常捕获处理方案1
+     *
+     * @return
+     */
+    @GetMapping(value = "seataException2")
+    @GlobalTransactional
+    public Object seataException2() throws TransactionException {
+        try {
+            testService.commit();
+            int i = 1 / 0;
+        } catch (Exception e) {
+            // 手动API回滚
+            GlobalTransactionContext.reload(RootContext.getXID()).rollback();
+        }
+        return true;
+    }
 
     /**
      * 简单测试提交分布式事务接口
-     * 
+     *
      * @return
      */
     @GetMapping(value = "seataCommit")
     @GlobalTransactional
     public Object seataCommit() {
         testService.commit();
-        int i=1/0;
         return true;
     }
 
     /**
+     * 异步进行缓存方案
+     * 
+     * @return
+     */
+    @GetMapping(value = "seataCache")
+    @GlobalTransactional
+    public Object seataCache() {
+        String uuid = UUID.randomUUID().toString();
+        executorService.execute(() -> demoService.commitCache(uuid));
+        return uuid;
+    }
+
+    /**
+     * 通过缓存值,从缓存得到事务执行结果
+     * 
+     * @param uuid
+     * @return
+     */
+    @GetMapping(value = "getResult")
+    public Object getResult(String uuid) {
+        return demoService.getCache(uuid);
+    }
+
+    /**
      * 秒杀下单分布式事务测试
+     * 
      * @return
      * @throws TransactionException
      */
@@ -90,12 +153,20 @@ public class TestController {
             } else {
                 return false;
             }
-        } catch (Exception e) {
-            logger.info("载入事务{}进行回滚" + e.getMessage(), RootContext.getXID());
-            GlobalTransactionContext.reload(RootContext.getXID()).rollback();
-            return false;
         } finally {
             lock.unlock();
         }
+    }
+
+    /**
+     * 多数据源事务测试
+     * 
+     * @return
+     */
+    @RequestMapping("testMultipleService")
+    @GlobalTransactional
+    public Object testMultipleService() {
+        Object o = multipleService.commit();
+        return o;
     }
 }

@@ -34,13 +34,14 @@ seata:
          namespace:
          serverAddr: 127.0.0.1:8848
          group: SEATA_GROUP
-         userName: ""
-         password: ""
+         username: "nacos"
+         password: "nacos"
    registry:
       type: nacos
       nacos:
          application: seata-server
          server-addr: 127.0.0.1:8848
+         group: SEATA_GROUP
          namespace:
-         userName: ""
-         password: ""
+         username: "nacos"
+         password: "nacos"

@@ -10,11 +10,20 @@ spring:
       nacos:
          discovery:
             server-addr: 127.0.0.1:8848
+            username: "nacos"
+            password: "nacos"
          config:
             server-addr: 127.0.0.1:8848
+            username: "nacos"
+            password: "nacos"
 server:
    port: 8081
 ribbon:
    ConnectTimeout: 100000
    ReadTimeout: 1000000
    OkToRetryOnAllOperations: false
+feign:
+   hystrix:
+      enabled: true
+   httpclient:
+      connection-timeout: 60000

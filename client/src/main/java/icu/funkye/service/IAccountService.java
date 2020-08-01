@@ -1,5 +1,6 @@
 package icu.funkye.service;
 
+import icu.funkye.service.failback.AccountFailBack;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import icu.funkye.entity.Account;
  * @date 2020/4/13
  */
 
-@FeignClient(value = "account-service")
+@FeignClient(value = "account-service", fallback = AccountFailBack.class)
 public interface IAccountService {
     @RequestMapping(value = "/getById")
     Account getById(@RequestParam(value = "id") Integer id);
