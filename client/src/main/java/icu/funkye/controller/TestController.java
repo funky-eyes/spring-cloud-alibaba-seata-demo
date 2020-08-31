@@ -103,7 +103,6 @@ public class TestController {
      * @return
      */
     @GetMapping(value = "seataCache")
-    @GlobalTransactional
     public Object seataCache() {
         String uuid = UUID.randomUUID().toString();
         executorService.execute(() -> demoService.commitCache(uuid));
