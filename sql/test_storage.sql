@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : mysql
-Source Server Version : 50721
+Source Server Version : 50731
 Source Host           : localhost:3306
 Source Database       : test_storage
 
 Target Server Type    : MYSQL
-Target Server Version : 50721
+Target Server Version : 50731
 File Encoding         : 65001
 
-Date: 2019-12-08 15:11:00
+Date: 2020-09-18 21:32:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,14 +30,13 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('1', '5', '9', '2019-12-06 21:51:01');
+INSERT INTO `product` VALUES ('1', '5', '100', '2020-09-18 21:31:13');
 
 -- ----------------------------
 -- Table structure for undo_log
 -- ----------------------------
 DROP TABLE IF EXISTS `undo_log`;
 CREATE TABLE `undo_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `branch_id` bigint(20) NOT NULL,
   `xid` varchar(100) NOT NULL,
   `context` varchar(128) NOT NULL,
@@ -46,9 +45,8 @@ CREATE TABLE `undo_log` (
   `log_created` datetime NOT NULL,
   `log_modified` datetime NOT NULL,
   `ext` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`),
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of undo_log

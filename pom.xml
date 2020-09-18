@@ -20,11 +20,8 @@
     </parent>
     <modules>
         <module>client</module>
-        <module>service</module>
         <module>product-service</module>
         <module>order-service</module>
-        <module>account-service</module>
-        <module>multiple</module>
     </modules>
     <dependencyManagement>
         <dependencies>

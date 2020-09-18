@@ -10,8 +10,9 @@ import icu.funkye.entity.Product;
  * </p>
  *
  * @author Funkye
- * @since 2019-04-10
  */
 public interface IProductService extends IService<Product> {
+    Boolean reduceStock(Integer id, Integer amount);
 
+    Object addStock(Integer id, Integer sum);
 }
