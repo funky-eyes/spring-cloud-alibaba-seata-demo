@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>1.8</java.version>
-        <alibaba.cloud.version>2.2.1.RELEASE</alibaba.cloud.version>
+        <alibaba.cloud.version>2.2.3.RELEASE</alibaba.cloud.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -71,7 +71,7 @@
             <dependency>
                 <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
-                <version>1.3.0</version>
+                <version>1.4.0</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.alibaba</groupId>
