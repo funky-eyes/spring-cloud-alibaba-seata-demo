@@ -1,14 +1,9 @@
 package icu.funkye.controller;
 
 import java.time.LocalDateTime;
-import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import icu.funkye.entity.Orders;
-import icu.funkye.entity.Product;
 import icu.funkye.service.IOrderService;
 import icu.funkye.service.IProductService;
-import io.seata.core.context.RootContext;
-import io.seata.core.exception.TransactionException;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +36,7 @@ public class TestController {
      */
     @GetMapping(value = "testCommit")
     @GlobalTransactional
-    public Object testCommit(@RequestParam(name = "id") Integer id,
+    public Object testCommit(@RequestParam(name = "id",defaultValue = "1") Integer id,
         @RequestParam(name = "sum", defaultValue = "1") Integer sum) {
         Boolean ok = productService.reduceStock(id, sum);
         if (ok) {
