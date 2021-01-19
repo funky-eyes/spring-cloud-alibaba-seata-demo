@@ -1,9 +1,10 @@
 package icu.funkye.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import icu.funkye.entity.Orders;
+import icu.funkye.service.IOrdersService;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import icu.funkye.entity.Orders;
-import icu.funkye.service.IOrdersService;
 
 /**
  * @author funkye
@@ -26,7 +24,7 @@ public class OrderController {
     IOrdersService ordersService;
 
     @RequestMapping("/save")
-    @GlobalTransactional
+    @GlobalTransactional(lockRetryInternal = 10,lockRetryTimes = 30)
     public Boolean save(@RequestBody Orders orders) {
         return ordersService.save(orders);
     }

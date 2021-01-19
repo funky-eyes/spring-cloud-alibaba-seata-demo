@@ -38,8 +38,11 @@ seata:
       type: nacos
       nacos:
          application: seata-server
-         server-addr: 127.0.0.1:8848
+         serverAddr: 127.0.0.1:8848
          group: SEATA_GROUP
          namespace:
          username: "nacos"
          password: "nacos"
+server:
+   tomcat:
+      max-threads: 500

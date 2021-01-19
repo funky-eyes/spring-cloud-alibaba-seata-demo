@@ -19,3 +19,6 @@ seata:
          namespace:
          username: "nacos"
          password: "nacos"
+server:
+   tomcat:
+      max-threads: 500
