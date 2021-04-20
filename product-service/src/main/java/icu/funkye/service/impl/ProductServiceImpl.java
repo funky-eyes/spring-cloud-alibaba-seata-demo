@@ -14,7 +14,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Override
     @Transactional
     public Boolean reduceStock(Integer id, Integer sum) {
-        return update(Wrappers.<Product>lambdaUpdate().eq(Product::getId, id).ge(Product::getStock, 1)
+        return update(Wrappers.<Product>lambdaUpdate().eq(Product::getId, id).ge(Product::getStock, sum)
             .setSql("stock=stock-" + sum));
     }
 
