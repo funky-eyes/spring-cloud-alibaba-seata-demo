@@ -23,7 +23,6 @@ public class ProductController {
     IProductService productService;
 
     @RequestMapping("/reduceStock")
-    @GlobalTransactional(lockRetryInternal = 10,lockRetryTimes = 30)
     public Boolean reduceStock(@RequestParam(name = "id") Integer id, @RequestParam(name = "sum") Integer sum) {
         return productService.reduceStock(id, sum);
     }

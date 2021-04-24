@@ -1,18 +1,21 @@
 package icu.funkye.service.impl;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
 import icu.funkye.entity.Product;
 import icu.funkye.mapper.ProductMapper;
 import icu.funkye.service.IProductService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import io.seata.spring.annotation.GlobalTransactional;
 
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements IProductService {
 
     @Override
-    @Transactional
+    @GlobalTransactional(lockRetryInternal = 5,lockRetryTimes = 200)
     public Boolean reduceStock(Integer id, Integer sum) {
         return update(Wrappers.<Product>lambdaUpdate().eq(Product::getId, id).ge(Product::getStock, sum)
             .setSql("stock=stock-" + sum));
